@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Image, View, Text } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation'; // 1.0.0-beta.27
+import { createStackNavigator, createAppContainer, createBottomTabNavigator} from 'react-navigation'; // 1.0.0-beta.27
 
 class LogoTitle extends React.Component {
   render() {
@@ -161,8 +161,20 @@ const RootStack = createStackNavigator(
 
 const AppContainer = createAppContainer(RootStack);
 
-export default class App extends React.Component {
-  render() {
-    return <AppContainer />;
+const TabNavigator = createBottomTabNavigator({
+  Home: HomeScreen,
+  Details: DetailsScreen,
+});
+
+export default createAppContainer(createBottomTabNavigator(
+  {
+    Home: AppContainer,
+    Details: TabNavigator,
   }
-}
+));
+
+// export default class App extends React.Component {
+//   render() {
+//     return <AppContainer />;
+//   }
+// }
